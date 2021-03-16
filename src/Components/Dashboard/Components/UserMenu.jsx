@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Menu, Dropdown } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { gql, useQuery } from "@apollo/client";
@@ -19,28 +19,23 @@ const PROFILE_QUERY = gql`
 `;
 
 export default function UserMenu(props) {
-  useEffect(() => {}, []);
-  const { client, loading, data } = useQuery(PROFILE_QUERY);
+  const logouT = props.logout;
+  const { data } = useQuery(PROFILE_QUERY);
   if (data) {
     console.log(data);
   }
   return (
     <div className="userMenu">
-      <Dropdown overlay={menu}>
-        <a
-          className="ant-dropdown-link"
-          href="#"
-          onClick={(e) => e.preventDefault()}
-        >
+      <Dropdown overlay={menu(logouT)}>
+        <p className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
           Hover me <DownOutlined />
-        </a>
+        </p>
       </Dropdown>
-      <button onClick={props.logout}>Log Out</button>
     </div>
   );
 }
 
-const menu = () => {
+const menu = (props) => {
   return (
     <Menu>
       <Menu.Item key="0">
@@ -53,13 +48,7 @@ const menu = () => {
         </a>
       </Menu.Item>
       <Menu.Item key="1">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.aliyun.com"
-        >
-          2nd menu item
-        </a>
+        <button onClick={props}>Log Out</button>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3" disabled>
