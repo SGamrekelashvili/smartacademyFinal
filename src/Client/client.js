@@ -10,7 +10,7 @@ const client = new ApolloClient({
   },
   // credentials: "include",
   headers: {
-    authorization: token ? `Bearer ${token}` : " ",
+    // authorization: token ? `Bearer ${token}` : " ",
     "Access-Control-Allow-Origin": "*",
   },
 });
