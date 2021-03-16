@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const token = localStorage.getItem("accessSmartToken");
+// const token = localStorage.getItem("accessSmartToken");
 
 const client = new ApolloClient({
   uri: "https://smartacademy-back.herokuapp.com/graphql",
