@@ -15,7 +15,7 @@ function DashboardHeader(props) {
           onClick: props.toggle,
         }
       )}
-      <UserMenu LoggedIn={props.LoggedIn} logOut={props.logout} />
+      <UserMenu LoggedIn={props.LoggedIn} logout={props.logout} />
     </props.Header>
   );
 }
