@@ -1,3 +1,5 @@
+import TodoTable from "./Components/TodoTable";
+
 function DashboardContent(props) {
   return (
     <props.Content
@@ -13,7 +15,7 @@ function DashboardContent(props) {
           <h1>dashborard</h1>
         </props.Route>
         <props.Route path="/todos">
-          <h1>Todos </h1>
+          <TodoTable />
         </props.Route>
         <props.Route path="/settings">
           <h1>Settings</h1>

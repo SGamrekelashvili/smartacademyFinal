@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import "./styles";
@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 function Dashboard(props) {
+  console.log(props);
   const [Collapsed, setCollapsed] = useState(false);
   const getKey = () => {
     const location = window.location.href.split("/")[3];

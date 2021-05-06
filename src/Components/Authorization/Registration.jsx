@@ -41,6 +41,7 @@ export default function Registration(props) {
   if (props.Registered) {
     return <Redirect to="/" />;
   }
+
   return (
     <>
       <Col flex="auto">

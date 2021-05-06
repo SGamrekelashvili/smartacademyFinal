@@ -5,34 +5,45 @@ import { gql, useQuery } from "@apollo/client";
 
 const PROFILE_QUERY = gql`
   query me {
-    id
-    username
-    email
-    confirmed
-    role {
+    me {
       id
-      type
-      name
-      description
+      username
+      email
+      confirmed
+      role {
+        id
+        type
+        name
+        description
+      }
     }
   }
 `;
 
 export default function UserMenu(props) {
   const logouT = props.logout;
-  const { data } = useQuery(PROFILE_QUERY);
-  if (data) {
-    console.log(data);
+
+  const { data, loading, error } = useQuery(PROFILE_QUERY, {
+    fetchPolicy: "network-only",
+  });
+  if (loading) {
+    return <></>;
   }
-  return (
-    <div className="userMenu">
-      <Dropdown overlay={menu(logouT)}>
-        <p className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-          Hover me <DownOutlined />
-        </p>
-      </Dropdown>
-    </div>
-  );
+  if (error) {
+    return error;
+  }
+  if (data) {
+    return (
+      <div className="userMenu">
+        <Dropdown overlay={menu(logouT)}>
+          <p className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+            <DownOutlined />
+            {data.me.username}
+          </p>
+        </Dropdown>
+      </div>
+    );
+  }
 }
 
 const menu = (props) => {
